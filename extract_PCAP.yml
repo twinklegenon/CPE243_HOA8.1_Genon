@@ -1,0 +1,30 @@
+---
+- name: Capture network traffic on the control node
+  hosts: all
+  become: true
+  pre_tasks:
+  
+  - name: install updates
+    tags: always
+    apt: 
+      upgrade: dist
+      update_cache: yes
+  
+  tasks:
+    - name: install tcpdump
+      apt:
+         name: tcpdump            
+            
+
+    - name: Fetch PCAP file
+      fetch: 
+        src: example.pcap
+        dest: "/home/twinkle/CPE243_twinkle/"
+            
+ #   - name: read to execute the pcap file
+ #     shell: tcpdump -r example.pcap
+      
+      
+      
+        
+      
